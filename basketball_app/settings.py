@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-3q8z_-cs07v4jc0wg^7qlng$1ax5l#n0ng^5gsc#@4)be58c7e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Add the host/IP address to ALLOWED_HOSTS
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '34.224.212.77']
 
 
 # Application definition
@@ -117,8 +118,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Add this line to set STATIC_ROOT
+STATIC_URL = 'static/'  # URL to access static files in development
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where static files will be collected during production
+
+# Add this to tell Django where to look for additional static files
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# Media files (if you are dealing with user-uploaded content)
+MEDIA_URL = '/media/'  # URL to access media files
+MEDIA_ROOT = BASE_DIR / 'media'  # Directory where media files will be stored
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

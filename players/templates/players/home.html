@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player List</title>
+    <!-- Load static files -->
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -13,7 +15,7 @@
     <main>
         <h2>Welcome to the Basketball App</h2>
         <p>This is the player list page. Use this app to manage player data.</p>
-        <a href="#" class="button">View Players</a>
+        <a href="/players/" class="button">View Players</a>
     </main>
     <footer>
         <p>&copy; 2024 Basketball App. All Rights Reserved.</p>
