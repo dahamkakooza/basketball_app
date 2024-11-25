@@ -1,17 +1,17 @@
 from django import forms
-from .models import Player, Opportunity, Application
+from .models import Player, Opportunity, Application, CustomUser
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import datetime
 
 
+# Player Form
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
         fields = [
-            'name', 'age', 'position', 'height', 'location', 'skill_level', 
-            'scholarship_interest', 'achievements', 'profile_pic', 'contact_email', 
+            'name', 'age', 'position', 'height', 'location', 'skill_level',
+            'scholarship_interest', 'achievements', 'profile_pic', 'contact_email',
             'availability', 'preferred_opportunities'
         ]
         widgets = {
@@ -38,6 +38,7 @@ class PlayerForm(forms.ModelForm):
         return contact_email
 
 
+# Opportunity Form
 class OpportunityForm(forms.ModelForm):
     class Meta:
         model = Opportunity
@@ -63,6 +64,7 @@ class OpportunityForm(forms.ModelForm):
         return link
 
 
+# Application Form
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
@@ -78,16 +80,18 @@ class ApplicationForm(forms.ModelForm):
         return status
 
 
-class RegistrationForm(UserCreationForm):
+# Custom User Creation Form for Registration
+class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'}))
+    role = forms.ChoiceField(choices=CustomUser.ROLE_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        model = CustomUser
+        fields = ['username', 'email', 'password1', 'password2', 'role']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists():
             raise ValidationError("A user with this email already exists.")
         return email
 

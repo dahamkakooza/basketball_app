@@ -17,7 +17,7 @@ DEBUG = True  # Set to True for development and False for production
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-development-secret-key')
 
 # Add your server's IP address or domain name in production
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '34.224.212.77', 'www.mahad.tech', 'mahad.tech']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '34.224.212.77', 'www.mahad.tech', 'mahad.tech','98.81.157.44','54.145.180.3']
 
 # Application definition
 INSTALLED_APPS = [
@@ -139,7 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Site Framework Settings
 SITE_ID = 1
 AUTH_USER_MODEL = 'players.CustomUser'
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
