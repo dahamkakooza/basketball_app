@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework
     'django.contrib.sites',  # Required for user authentication features
     'django.contrib.sitemaps',  # Optional for SEO
+    'axes'
 ]
 
 MIDDLEWARE = [
@@ -41,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware'
 ]
 
 ROOT_URLCONF = 'basketball_app.urls'
@@ -145,4 +147,9 @@ CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://web-02.mahad.tech',
+    'https://www.mahad.tech',
+]
 
