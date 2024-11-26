@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import login 
+from django.contrib.auth import login, get_backends
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
@@ -11,6 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 from .models import Player, Opportunity, Application
 from .forms import PlayerForm, OpportunityForm, CustomUserCreationForm
 from .serializers import PlayerSerializer, OpportunitySerializer
+from django.views.decorators.csrf import csrf_protect
 
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
@@ -38,20 +39,25 @@ def home(request):
 
 
 # Register New Users
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+
+            # Specify the authentication backend
+            backend = get_backends()[0]  # Use the first configured backend
+            login(request, user, backend=backend.__class__.__name__)
+
             messages.success(request, "Account created successfully!")
             return redirect('home')
         else:
             messages.error(request, "Failed to create account. Please try again.")
     else:
         form = CustomUserCreationForm()
-    return render(request, 'players/register.html', {'form': form})
 
+    return render(request, 'players/register.html', {'form': form})
 
 # Add Player
 @login_required

@@ -151,5 +151,11 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://web-02.mahad.tech',
     'https://www.mahad.tech',
+    'http://127.0.0.1',
+    'http://localhost',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Keep this if you use Django's default authentication
+]
