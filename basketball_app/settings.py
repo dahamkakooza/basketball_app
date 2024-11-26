@@ -153,6 +153,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.mahad.tech',
     'http://127.0.0.1',
     'http://localhost',
+    'http://mahad.tech',  
+    'https://mahad.tech', 
 ]
 
 AUTHENTICATION_BACKENDS = [
