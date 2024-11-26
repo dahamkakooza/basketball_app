@@ -17,7 +17,7 @@ DEBUG = True  # Set to True for development and False for production
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-development-secret-key')
 
 # Add your server's IP address or domain name in production
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '34.224.212.77', 'www.mahad.tech', 'mahad.tech','98.81.157.44','54.145.180.3','web-02.mahad.tech']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '34.224.212.77', 'www.mahad.tech', 'mahad.tech','98.81.157.44','54.145.180.3','web-02.mahad.tech','web-01.mahad.tech']
 
 # Application definition
 INSTALLED_APPS = [
